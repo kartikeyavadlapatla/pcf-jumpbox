@@ -1,0 +1,33 @@
+---
+- type: replace
+  path: /releases/name=os-conf?
+  value:
+    name: "os-conf"
+    version: "22.1.0"
+
+- type: replace
+  path: /instance_groups/name=jumpbox/jobs/0
+  value:
+    name: user_add
+    release: os-conf
+    properties:
+      users:
+      - name: ubuntu
+        public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpliLh2KtN1voZMYy8rCSq01a2l0k24DXId0/bwIZZKudUV2gkTpJFph8j/XMOq3/Id7rJzLph3JJOKFNERP+rkVlDQbSSmVyQJIvRKSZGLGB6Ht9Lv9kdPZ+GoPnB0Aqkc6KhJ2pbj1KJKQRV1zyQV7To2zAI/biEY9R4GhZZh1au9qZNTOonr3hpBePnQCbpUjhJZksSVC7zLtYvTcVO/SYyxEqSPcnMPDykz49q2Ze2ADgo8fD0us2REyXnSlvqi2aSpn6ycCM7Aljm9BTsQZNHGhVbcXmZ8VzkkWaLIjBH/Vh82t6aEjts61bQAFMEKqjYgRu74Sp6/PeRLNZx"
+
+- type: replace
+  path: /instance_groups/name=jumpbox/azs
+  value: [us-east-1a]
+
+- type: replace
+  path: /instance_groups/name=jumpbox/vm_type?
+  value: t3.medium
+
+- type: replace
+  path: /instance_groups/name=jumpbox/networks/0
+  value:
+    name: Concourse
+
+- type: replace
+  path: /instance_groups/name=jumpbox/persistent_disk?
+  value: 10240
